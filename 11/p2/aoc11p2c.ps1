@@ -1,4 +1,4 @@
-﻿measure-command {
+﻿$runtime = measure-command {
 
 $In = (Get-Content -Path .\input.txt -Raw)
 
@@ -63,8 +63,9 @@ for ($i = 0; $i -lt ($Stones.Length); $i++) {
     $Result += Engrave-Stone -Stone $Stones[$i]
 }
 
-write-host $Result
-Write-Host "Saved $((($Global:saved)/($Global:calls)-($global:calls))*3.02653/60/24/365) years"
 $Result | Set-Content -Path .\out.txt -Encoding UTF8
 
 }
+
+write-host $Result
+Write-Host "Saved $((($Global:saved)/($Global:calls)-($global:calls))*($runtime.TotalMinutes)/60/24/365) years"
